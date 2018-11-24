@@ -2,6 +2,18 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
+
+/////// Things to fix
+/*
+Make sure ArrayOutOfBounds is fixed - no target or player generates on the topmost,leftmost,rightmost or downmost row or column
+Deadends in blocks
+action cost when you observe blocks
+Make blocks hidden until its in your surrounding
+check if a cell is already in the open list
+*/
+///////
+
+
 public class grid implements gridInterface {
 
 
@@ -16,7 +28,6 @@ public class grid implements gridInterface {
 
 	boolean check1=true;
 
-    BinaryTree tree ;//= new BinarySearchTree();
 
 	int g=0;
 	int f=0;
@@ -85,9 +96,8 @@ public grid()
     //(15-13)+13; //nextInt(High-Low) + Low;
     randomNumbRightPlayer = 3;//rg.nextInt( (size-1)-(size-2) )+(size-2);
     //(15-14)+14; /// generates number in 5i and 4j
-    // USE 20
-    randomNumbLeftTarget = 20;//rg.nextInt(3-1)+1;
-    randomNumbRightTarget = 20;//rg.nextInt(9-7)+7;
+    randomNumbLeftTarget = 7;//rg.nextInt(3-1)+1;
+    randomNumbRightTarget = 7;//rg.nextInt(9-7)+7;
 
 
 	/*
@@ -100,7 +110,6 @@ public grid()
 
 */
 
-    BinaryTree tree = new BinarySearchTree();
 
 	ArrayList fs = new ArrayList();
     LinkedList<String> openList = new LinkedList<>();
@@ -913,6 +922,10 @@ check if its blocked
 	a = Integer.toString((positionLeft));
 	b = Integer.toString(positionRight+1);
 	c = a+","+b;   // This right here for the first position
+	System.out.println("Current position(checkStatus): " + positionLeft + "," + positionRight);
+	System.out.println("position we are looking forward to(checkStatus): " + positionLeft + "," + (positionRight+1));
+	System.out.println("ayyyyy we out here :" + closedList.indexOf(c));
+
 	//int indexnum = closedList.indexOf(c);
 	//System.out.println("element " + closedList.get(indexnum) + " is located at index :" + closedList.indexOf(c) );
 
@@ -1270,7 +1283,7 @@ route[positionLeft][positionRight] = fSmall;//73;
 
 
 //////////////////////
-a[oldpositionLeft][oldpositionRight]="_";
+//a[oldpositionLeft][oldpositionRight]="_";
 
 a[positionLeft][positionRight]="X";  /// This is to show movement on the other string map
 
@@ -1573,154 +1586,5 @@ for(int i=0;i<size;i++)
 
     return 1;
 }
-
-/*
-public int gridBlockAdd()
-{
-  int ii=0;
-    int jj=0;
-blockMaker();
-
-   for (int i = 0; i < 5; i++)
-    {
-        for (int j = 0; j < 5; j++)
-        {
-			if(randomNumbLeftTarget==list1[ii] && randomNumbRightTarget==list2[jj]);
-
-			else if(randomNumbLeftPlayer==list1[ii] && randomNumbRightPlayer==list2[jj]);
-
-           else {
-			  // a[ list1[ii] ][ list2[jj] ] = "_";
-			    route[ list1[ii] ][ list2[jj] ] = 1;
-			   }
-            jj++;
-        }
-        ii++;
-    }
-
-
-   for (int i = 4; i < 5; i++)
-    {
-        for (int j = 0; j < 5; j++)
-        {
-			if(randomNumbLeftTarget==list1[ii] && randomNumbRightTarget==list2[jj]);
-
-			else if(randomNumbLeftPlayer==list1[ii] && randomNumbRightPlayer==list2[jj]);
-
-           else {
-			  // a[i][j] = "_";
-			    route[i][j] = 1;
-			   }
-            jj++;
-        }
-        ii++;
-    }
-
-
-   for (int i = 5; i <6; i++)
-    {
-        for (int j = 6; j < 9; j++)
-        {
-			if(randomNumbLeftTarget==list1[ii] && randomNumbRightTarget==list2[jj]);
-
-			else if(randomNumbLeftPlayer==list1[ii] && randomNumbRightPlayer==list2[jj]);
-
-           else {
-			 //  a[i][j] = "_";
-			    route[i][j] = 1;
-			   }
-            jj++;
-        }
-        ii++;
-    }
-
-
-
-
-
-for(int i=0;i<size;i++)
-{
-
-		route[i][j]	= 1 ;
-		//a[i][j]= "_";
-	for(int j=0;j<size;j++)
-	{
-
-		if(i==0)
-		{
-		route[i][j]	= 1 ;
-		a[i][j]= "_";
-		}
-
-		if(i==size-1)
-		{
-		route[i][j]	= 1 ;
-		a[i][j]= "_";
-		}
-
-	if(j==size-1)
-	{		route[i][j]	= 1 ;
-		a[i][j]="_";
-		}
-
-	}
-
-}
-/*
-route[8][8] = 1;
-route[8][9] = 1;
-route[8][10] = 1;
-route[8][11] = 1;
-route[8][12] = 1;
-/*
-a[8][8] = "_";
-a[8][9] = "_";
-a[8][10] ="_";
-a[8][11] ="_";
-a[8][12] ="_";
-*/
-/*
-a[8][6] = "_";a[8][7] ="_" ;
-a[7][6] = "_";a[7][7] ="_" ;
-a[6][6] = "_";a[6][7] ="_" ;
-a[5][6] = "_";a[5][7] ="_" ;
-a[4][6] = "_";a[4][7] ="_" ;
-a[3][6] = "_";a[3][7] ="_" ;
-
-
-route[8][6] = 1;route[8][7] = 1;
-route[7][6] = 1;route[7][7] = 1;
-route[6][6] = 1;route[6][7] = 1;
-route[5][6] = 1;route[5][7] = 1;
-route[4][6] = 1;route[4][7] = 1;
-route[3][6] = 1;route[3][7] = 1;
-*/
-/*
-for(int i=0;i<size;i++)
-{
-	for(int j=0;j<size;j++)
-	{
-
-		if(j==4 && i<11)
-		{
-		route[i][j]	= 1 ;
-		a[i][j]="_";
-		}
-
-		if(j==10 && i>4)
-		{
-		route[i][j]	= 1 ;
-		a[i][j]="_";
-		}
-	}
-}
-*/
-//gridMap();
-/*
-    System.out.println();
-
-    return 1;
-}
-*/
 
 }
