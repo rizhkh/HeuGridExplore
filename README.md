@@ -6,6 +6,5 @@ Object starts from a  given location and reaches a target in least number of ste
 Download the files in one folder, compile in your JDK IDE and run.
 
 ### Notes
-If it encounter any sort of error, try running again.
-Program makes use of A star algorithm and calculating heuristic and manhattan values.
+Makes use of A star algorithm and calculating heuristic and manhattan values.
 
